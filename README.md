@@ -1,6 +1,6 @@
 # agent-skills
 
-The three files I attach to every coding-agent session. Agent Skills format (SKILL.md with frontmatter), portable across Claude Code, HackerRank's AI IDE, Cursor, Codex.
+The three files I attach to every coding-agent session. Agent Skills format (SKILL.md with frontmatter), portable across Claude Code, cloud IDE agents, Cursor, Codex.
 
 - `environment-probe/` learn the box in one command, report in five lines, set up the docs helper, then stop.
 - `delivery-plan/` one-page PRD, architecture sketch, 3-5 slices with test-first cadence, sized for a 60-minute session.

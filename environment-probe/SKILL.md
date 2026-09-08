@@ -1,6 +1,6 @@
 ---
 name: environment-probe
-description: Probe the HackerRank interview sandbox in under a minute, confirm what is already known about the box, and report before any code is written. Use at the very start of a session, and again if a run command or port stops working.
+description: Probe a fresh sandbox or cloud dev box in under a minute, confirm what is already known about it, and report before any code is written. Use at the very start of a session, and again if a run command or port stops working.
 ---
 
 # Environment probe
@@ -9,7 +9,7 @@ Goal: in one command, learn what this box has and report it in five lines. No co
 
 ## Step 0: bring the skills onto the box (do this before the probe)
 
-Attachments live only in the current chat; files on disk live for the whole interview and can be @-mentioned from any chat. So the first command of the session is:
+Attachments live only in the current chat; files on disk live for the whole session and can be @-mentioned from any chat. So the first command of the session is:
 
 ```bash
 git clone --depth 1 https://github.com/arthurkatcher/agent-skills .agent/skills && ls .agent/skills
