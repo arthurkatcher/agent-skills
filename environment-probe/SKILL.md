@@ -46,6 +46,14 @@ bash .agent/skills/environment-probe/scripts/docs.sh get <library-id> <topic>   
 
 Example: `docs.sh search flask` gives `/pallets/flask`; `docs.sh get /pallets/flask "error handling" 1500`. Read the error first; fetch docs second. Never paste more than one docs call per problem into the chat.
 
+## Share a running app (only when asked, last minutes)
+
+```bash
+bash .agent/skills/environment-probe/scripts/share.sh 8000
+```
+
+Prints a public `https://….trycloudflare.com` URL for the app on that port. No account or token involved. Start it in a second terminal tab.
+
 ## Known facts about this kind of sandbox (verify with the probe, do not re-derive)
 
 - Project root is `/projects/challenge` on this platform. The "run project" terminal tab runs `.vscode/tasks.json`.
