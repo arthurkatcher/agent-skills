@@ -9,7 +9,7 @@ The three files I attach to every coding-agent session. Agent Skills format (SKI
 Bootstrap on any box:
 
 ```bash
-git clone --depth 1 https://github.com/arthurkatcher/agent-skills .agent/skills
+[ -d .agent/skills ] || git clone -q --depth 1 https://github.com/arthurkatcher/agent-skills .agent/skills
 ```
 
 Then reference them as `@.agent/skills/<name>/SKILL.md`.

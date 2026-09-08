@@ -12,7 +12,7 @@ Goal: in one command, learn what this box has and report it in five lines. No co
 Attachments live only in the current chat; files on disk live for the whole session and can be @-mentioned from any chat. So the first command of the session is:
 
 ```bash
-git clone --depth 1 https://github.com/arthurkatcher/agent-skills .agent/skills && ls .agent/skills
+[ -d .agent/skills ] || git clone -q --depth 1 https://github.com/arthurkatcher/agent-skills .agent/skills; ls .agent/skills
 ```
 
 If the clone fails (no network), say so in one line and ask me to attach the three SKILL.md files instead. Do not retry more than once.
