@@ -33,6 +33,7 @@ Working code is not automatically good code, and a confident claim is not eviden
 - Comments say why, in one to three lines. A comment that explains the flow is a request to rename or split.
 - Every changed line traces to the request. Targeted edits, never whole-file regeneration. Mention unrelated smells; do not fix them silently.
 - No new dependency without a reason you would repeat to a reviewer. Verify every API against the installed version, not memory.
+- Unsure about an API surface, a signature, or a version difference → read the installed source first; if that does not settle it, run the docs script (`bash .agent/skills/docs-lookup/scripts/docs.sh search <library>`, then `get <id> <topic>`), one call per problem, and quote the line you relied on. Never write against memory and hope.
 - Nothing left behind: no dead code, no TODOs for in-scope work, no commented-out blocks, no stubs presented as done.
 
 ## Trigger rules
