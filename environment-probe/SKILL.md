@@ -21,6 +21,7 @@ Skills on the box after that:
 
 - `.agent/skills/environment-probe/SKILL.md` this file.
 - `.agent/skills/coding-practices/SKILL.md` how code gets written, tested, and reviewed. Read it before any code.
+- `.agent/skills/planning/SKILL.md` PRD and sliced plan, in Plan mode, after the probe and before any code. Write the result into `.agent/NOTES.md` under Task and Plan.
 - `.agent/skills/docs-lookup/SKILL.md` current library docs from the terminal, when an API is uncertain.
 
 Reference them by path in every new chat. Frame requests as coding work ("run the probe", "implement slice 1 per the notes").
