@@ -1,11 +1,11 @@
 ---
 name: environment-probe
-description: Probe a fresh sandbox or cloud dev box in under a minute, confirm what is already known about it, and report before any code is written. Use at the very start of a session, and again if a run command or port stops working.
+description: Probe a fresh sandbox or cloud dev box in under a minute, confirm what is already known about it, write the findings to a notes file, and report before any code is written. Use at the very start of a session, and again if a run command or port stops working.
 ---
 
 # Environment probe
 
-Goal: in one command, learn what this box has and report it in five lines. No code, no installs, no fixes during the probe.
+Goal: in one command, learn what this box has, write it down, and report it in five lines. No code, no installs, no fixes during the probe.
 
 ## Step 0: bring the skills onto the box
 
@@ -15,9 +15,15 @@ Attachments live only in the current chat; files on disk live for the whole sess
 [ -d .agent/skills ] || git clone -q --depth 1 https://github.com/arthurkatcher/agent-skills .agent/skills; ls .agent/skills
 ```
 
-If the clone fails (no network), say so in one line and ask me to attach the three SKILL.md files instead. Do not retry more than once.
+If the clone fails (no network), say so in one line and ask me to attach the SKILL.md files instead. Do not retry more than once.
 
-After that, reference skills as `@.agent/skills/<name>/SKILL.md` in every new chat. Frame requests as coding work ("run the probe", "draft the plan for this task").
+Skills on the box after that:
+
+- `.agent/skills/environment-probe/SKILL.md` this file.
+- `.agent/skills/coding-practices/SKILL.md` how code gets written, tested, and reviewed. Read it before any code.
+- `.agent/skills/docs-lookup/SKILL.md` current library docs from the terminal, when an API is uncertain.
+
+Reference them by path in every new chat. Frame requests as coding work ("run the probe", "implement slice 1 per the notes").
 
 ## Step 1: run the probe
 
@@ -27,7 +33,21 @@ bash .agent/skills/environment-probe/scripts/probe.sh
 
 Read-only. Prints runtime versions, files, tasks.json, README run lines, package manifests, ports, sudo, CPU/RAM/disk, network reachability (npm, PyPI, GitHub, docs API), and which services exist.
 
-## Step 2: report (five lines, nothing else)
+## Step 2: write the notes file
+
+Create `.agent/NOTES.md` and put the five-line report in it under a `## Environment` heading. This file is the session's memory: every new chat reads it first, and every finished slice appends to it. Sections, in order:
+
+```markdown
+## Environment      the five-line report from the probe
+## Task             the task restated in one paragraph, plus explicit out-of-scope
+## Plan             numbered slices, each with its acceptance check
+## Log              one line per finished slice: what shipped, test command run, result
+## Open risks       what could still be wrong, and how we would know
+```
+
+Rules for the notes: append, do not rewrite history. Keep each entry to one or two lines. When a chat starts with "read the notes", the first action is to read `.agent/NOTES.md` and say in one line where the work stands.
+
+## Step 3: report (five lines, nothing else)
 
 1. Runtime: which of Node / Python is present, versions.
 2. Scaffold: empty root, or what is already there (app, tests, README, tasks.json) and the documented run command.
@@ -36,15 +56,6 @@ Read-only. Prints runtime versions, files, tasks.json, README run lines, package
 5. Recommendation: the stack for this task in one sentence, using what is already installed.
 
 Then stop and wait for the plan.
-
-## Docs helper (use only when an API surface is uncertain or something fails)
-
-```bash
-bash .agent/skills/environment-probe/scripts/docs.sh search <library>            # find the library id
-bash .agent/skills/environment-probe/scripts/docs.sh get <library-id> <topic>    # focused snippets, ~2500 tokens
-```
-
-Example: `docs.sh search flask` gives `/pallets/flask`; `docs.sh get /pallets/flask "error handling" 1500`. Read the error first; fetch docs second. Never paste more than one docs call per problem into the chat.
 
 ## Share a running app (only when asked, last minutes)
 
@@ -56,7 +67,7 @@ Prints a public `https://….trycloudflare.com` URL for the app on that port. No
 
 ## Known facts about this kind of sandbox (verify with the probe, do not re-derive)
 
-- Project root is `/projects/challenge` on this platform. The "run project" terminal tab runs `.vscode/tasks.json`.
+- Project root is `/projects/challenge` on this platform. The "run project" terminal tab runs `.vscode/tasks.json`. The root is a git repo; the Diff pane shows the working tree against HEAD, so commit per finished slice.
 - 2 vCPU, 12 GB RAM, ~13 GB disk. Passwordless sudo, apt-get works.
 - Full outbound internet: npm, PyPI, GitHub, raw.githubusercontent.com, context7.com.
 - Python images: Python 3.13 + uv + git, Node may be absent. Node images ship their own Node. Installing Node via apt takes ~2 min and gives Node 18; last resort only.
