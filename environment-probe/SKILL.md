@@ -65,6 +65,14 @@ bash .agent/skills/environment-probe/scripts/share.sh 8000
 
 Prints a public `https://….trycloudflare.com` URL for the app on that port. No account or token involved. Start it in a second terminal tab.
 
+## Postgres on the box (only if the task needs it; SQLite is the default)
+
+```bash
+bash .agent/skills/environment-probe/scripts/postgres.sh 5432 app
+```
+
+Installs PostgreSQL via apt (disabling the broken third-party apt source first), starts it on the given port, creates role and database `app`/`app`, and prints `DATABASE_URL`. About two minutes. Report the last three lines of its output.
+
 ## Known facts about this kind of sandbox (verify with the probe, do not re-derive)
 
 - Project root is `/projects/challenge` on this platform. The "run project" terminal tab runs `.vscode/tasks.json`. The root is a git repo; the Diff pane shows the working tree against HEAD, so commit per finished slice.
