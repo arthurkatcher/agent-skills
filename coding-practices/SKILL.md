@@ -9,6 +9,8 @@ description: Always-on rules for writing, changing, testing, and reviewing code 
 
 Working code is not automatically good code, and a confident claim is not evidence.
 
+The bar for every change, including the first slice and any "quick" one: code you would merge to main and run for paying users today. Tested, error paths handled, wired in, documented in one line. There is no prototype tier; if the scope is too big for that bar, split the scope, never the quality.
+
 ## Decision rules
 
 - No production code without a failing test first. The loop, one behavior at a time:

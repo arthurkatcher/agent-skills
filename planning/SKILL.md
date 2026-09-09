@@ -9,6 +9,8 @@ description: Turn a request into a PRD (what and why) and a sliced plan (how) be
 
 Nobody knows exactly what they want, and a plan is a prompt: whatever it leaves vague, the executor will guess.
 
+Every slice in the plan ships at production quality: tested at its seam, error and permission paths covered, wired end to end, runnable by the documented command. Plan for that bar from slice 1; a plan that defers quality to a later slice is a plan failure.
+
 ## Discovery
 
 - Classify first and say it: **spike** (a question; output is an answer, not kept code), **bounded** (a change to a flow that already exists in this repo), or **architectural** (new subsystem or an interface others depend on). In doubt, take the heavier path; hidden complexity upgrades it, nothing downgrades.
